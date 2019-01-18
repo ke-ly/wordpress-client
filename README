@@ -1,1 +1,18 @@
-readme
+## Getting Started
+
+```bash
+# Install deps
+$ yarn global add umi # OR npm install -g umi
+
+# Create application
+$ mkdir myapp && cd myapp
+
+# Create page
+$ umi generate page index
+
+# Start dev server
+$ umi dev
+
+# Build and deploy
+$ umi build
+```
