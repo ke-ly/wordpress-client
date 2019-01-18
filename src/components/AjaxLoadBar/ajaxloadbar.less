@@ -1,0 +1,21 @@
+.ajaxloadbar{  
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 40;   
+    opacity: 0;
+    transition: opacity .4s linear .4s;
+    &.isloading{
+        opacity: 1;
+        transition: none;
+    }
+    .progress{
+        height: 2px;
+        position: fixed;
+        left: 0;       
+        top: 0;
+        background: #77b6ff;
+        box-shadow: 0 0 10px rgba(119,182,255,.7);        
+        transition: width .4s ease;
+    }
+}

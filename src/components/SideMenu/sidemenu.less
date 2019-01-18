@@ -1,0 +1,21 @@
+@import '../../var.less';
+
+.aside{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    width: @sidemenu-width;
+    height: 100%;
+    padding-top: @head-height;
+    background-color: #fff;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-right: @border;
+
+    :global{
+        .ant-menu-light{
+            border-color: transparent;
+        }
+    }
+}

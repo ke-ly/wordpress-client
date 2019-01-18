@@ -1,0 +1,16 @@
+
+html, body, #root {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+}
+
+a{
+    color: #40a9ff;
+}
+
+.link{
+    text-decoration: underline;
+}

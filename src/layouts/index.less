@@ -1,0 +1,20 @@
+@import '../var.less';
+
+.layout{
+    position: relative;
+
+    .main{
+        display: flex;
+        flex-direction: column;
+        flex: auto;
+        background: @background-color ;
+        min-height: 100vh;
+        padding-top: @head-height;
+        overflow-x: hidden;
+        .container{
+            padding: 24px;
+            flex: auto;
+            min-height: 0;
+        }
+    }
+}
