@@ -20,11 +20,9 @@ class BasicLayout extends React.Component<BasicLayoutProps,BasicLayoutState>{
 	constructor(props){
 		super(props)
 		this.state = {
-			collapsed:false
+			collapsed:false,
 		}
 	}
-
-	// static get
 
 	async componentDidMount(){
 		// const res = await axios.get('/api/users')
@@ -40,11 +38,15 @@ class BasicLayout extends React.Component<BasicLayoutProps,BasicLayoutState>{
 
 	render(){
 		const { children } = this.props		
-		const { collapsed } = this.state	
-			
+		const { collapsed, } = this.state	
+		
 		return (
 			<div className={styles.layout}>
-				<Header collapsed={collapsed} onCollapsed={this.toggleCollapsed} />
+				<Header 
+					history={this.props.history}
+					location={this.props.location}
+					collapsed={collapsed} 
+					onCollapsed={this.toggleCollapsed} />
 				<SideMenu collapsed={collapsed}/>
 				<main className={styles.main} style={{paddingLeft: collapsed ? 80 : 220}}>					
 					<section className={styles.container}>

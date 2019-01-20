@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Menu, Icon, Button } from 'antd'
+import { Menu, Icon, } from 'antd'
+import Link from 'umi/link'
 import classNames from 'classnames'
 
 import styles from './sidemenu.less'
@@ -38,9 +39,17 @@ class SideMenu extends Component<SideBarProps>{
                     onOpenChange={this.onOpenChange}
                     inlineCollapsed={collapsed}
                     >
-                    <Menu.Item key="dashboard">
-                        <Icon type="dashboard" />
-                        <span>控制台</span>
+                    <Menu.Item key="dashboard">                        
+                        <Link to="/">
+                            <Icon type="dashboard" />
+                            <span>控制台</span>
+                        </Link>                        
+                    </Menu.Item>                    
+                    <Menu.Item key="list">                       
+                        <Link to="/list">
+                            <Icon type="bars" />
+                            <span>列表</span>
+                        </Link>                        
                     </Menu.Item>                    
                     <SubMenu key="page" title={<span><Icon type="desktop" /><span>页面</span></span>}>
                         <Menu.Item key="1">系统信息</Menu.Item>

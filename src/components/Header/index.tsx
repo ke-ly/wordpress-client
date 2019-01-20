@@ -1,29 +1,51 @@
 import React, { Component } from 'react'
 import { Icon } from 'antd'
+import { BasicLayoutProps } from '../../layouts/index'
 import AjaxLoadBar from '@/components/AjaxLoadBar'
-import Axios from '@/components/AxiosHOC'
+// import Axios from '@/components/AxiosHOC'
 import classNames from 'classnames'
 
 import styles from './header.less'
 
-interface HeaderProps {
+export interface HeaderProps extends BasicLayoutProps {
 	onCollapsed ?: () => void
-	// axios ?:(e:any) => void
 	collapsed : boolean	
+}
+export interface HeaderState {
+	pathname:string
+	isloading:number
+	progress:boolean
 }
 
 class Header extends Component<HeaderProps>{
     state = {
 		isloading:false,
-		progress:1,
+		progress:0,
+		pathname:this.props.location.pathname
 	}
 
 	loading:any = null
 
-	async componentDidMount(){		
-		// const res = await this.props.axios.get('/api/users')
-		// console.log(res,123);
-		
+	static getDerivedStateFromProps (props:HeaderProps,state:HeaderState){		
+		if(props.location.pathname !== state.pathname){
+			return{
+				pathname:props.location.pathname,
+				isloading:false,
+				progress:0
+			}
+		}
+		return null
+	}
+
+	componentDidUpdate(prevProps:HeaderProps){
+		if(this.props.location.pathname !== prevProps.location.pathname){
+			setTimeout(()=>{
+				this.imitateLoading()
+			},400)
+		}		
+	}
+
+	imitateLoading (){
 		this.setState({isloading:true})
 		let progress = 0
 		this.loading = setInterval(()=>{
@@ -40,17 +62,19 @@ class Header extends Component<HeaderProps>{
 		},500)
 	}
 
+	async componentDidMount(){	
+		this.imitateLoading()				
+	}
+
 	componentWillUnmount(){
 		this.setState({isloading:false})
 		clearInterval(this.loading)
     }
 	
-	
-	
     render(){
 		const { collapsed } = this.props
 		const { isloading, progress, } = this.state		
-		
+		console.log("render",this.props,this.state);
         return(
             <header className={classNames('header',styles.header)}>
                 <AjaxLoadBar isloading={isloading} progress={progress}/>  
@@ -75,4 +99,4 @@ class Header extends Component<HeaderProps>{
     }
 }
 
-export default Axios(Header)
+export default Header
