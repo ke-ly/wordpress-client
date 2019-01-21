@@ -7,10 +7,15 @@ body {
     margin: 0;
 }
 
-a{
-    color: #40a9ff;
-}
-
 .link{
     text-decoration: underline;
+}
+
+.ant-menu-inline .ant-menu-item:after{
+    left: 0;
+    right: auto;
+}
+
+ul,li{
+    list-style: none;
 }
