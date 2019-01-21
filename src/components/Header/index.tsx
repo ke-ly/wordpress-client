@@ -73,8 +73,7 @@ class Header extends Component<HeaderProps>{
 	
     render(){
 		const { collapsed } = this.props
-		const { isloading, progress, } = this.state		
-		console.log("render",this.props,this.state);
+		const { isloading, progress, } = this.state	
         return(
             <header className={classNames('header',styles.header)}>
                 <AjaxLoadBar isloading={isloading} progress={progress}/>  
