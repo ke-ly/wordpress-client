@@ -15,13 +15,30 @@ export interface HeaderState {
 	pathname:string
 	isloading:number
 	progress:boolean
+	nowDate:string
+}
+
+const Month:string[] = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov',"Dec"]  
+
+const getDate = ():string => {
+	let str:string = ''
+	const date = new Date()	
+	const Mon = Month[date.getMonth()]
+	const Day = date.getDay().toString().padStart(2,'0')
+	const Hour = date.getHours().toString().padStart(2,'0')
+	const Min = date.getMinutes().toString().padStart(2,'0')	
+	str = `
+		${Mon} ${Day}, ${Hour}:${Min}
+	`
+	return str
 }
 
 class Header extends Component<HeaderProps>{
     state = {
 		isloading:false,
 		progress:0,
-		pathname:this.props.location.pathname
+		pathname:this.props.location.pathname,
+		nowDate:getDate()
 	}
 
 	loading:any = null
@@ -31,7 +48,8 @@ class Header extends Component<HeaderProps>{
 			return{
 				pathname:props.location.pathname,
 				isloading:false,
-				progress:0
+				progress:0,
+				nowDate:getDate()
 			}
 		}
 		return null
@@ -62,8 +80,15 @@ class Header extends Component<HeaderProps>{
 		},500)
 	}
 
+	
+
 	async componentDidMount(){	
-		this.imitateLoading()				
+		this.imitateLoading()	
+		setInterval(()=>{
+			this.setState({
+				nowDate:getDate()
+			})	
+		},1000)		
 	}
 
 	componentWillUnmount(){
@@ -73,7 +98,8 @@ class Header extends Component<HeaderProps>{
 	
     render(){
 		const { collapsed } = this.props
-		const { isloading, progress, } = this.state	
+		const { isloading, progress, nowDate } = this.state	
+		
         return(
             <header className={classNames('header',styles.header)}>
                 <AjaxLoadBar isloading={isloading} progress={progress}/>  
@@ -91,6 +117,15 @@ class Header extends Component<HeaderProps>{
 								collapsed ? <Icon type="menu-unfold" /> : <Icon type="menu-fold" />
 							}							
 						</a>
+						<ul className={styles.header_right}>
+							<li>
+								<Icon type="clock-circle" />
+								{ nowDate }
+							</li>
+							{/* <li>
+								2	
+							</li> */}
+						</ul>
 					</div>
                 </div>  				            
             </header>

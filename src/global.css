@@ -15,3 +15,7 @@ body {
     left: 0;
     right: auto;
 }
+
+ul,li{
+    list-style: none;
+}

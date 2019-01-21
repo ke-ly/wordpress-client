@@ -16,7 +16,20 @@
         align-items: center;
     }
     .header_actions{
+        display: flex;
+        align-items: center;
         flex: 1;       
+        .header_right{
+            flex: 1;
+            display: flex;         
+            align-items: center; 
+            justify-content: flex-end;
+            margin-bottom: 0;
+            padding-right: 24px;
+            >li{
+                float: right;
+            }
+        }
     }
     .side_collapsed{
         margin: 0 14px;
