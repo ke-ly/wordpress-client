@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { Icon } from 'antd'
+import React, { Component, Fragment } from 'react'
+import { Icon, Avatar, Dropdown, Menu  } from 'antd'
 import { BasicLayoutProps } from '../../layouts/index'
 import AjaxLoadBar from '@/components/AjaxLoadBar'
 // import Axios from '@/components/AxiosHOC'
@@ -98,12 +98,20 @@ class Header extends Component<HeaderProps>{
 	
     render(){
 		const { collapsed } = this.props
-<<<<<<< HEAD
-		const { isloading, progress, } = this.state		
-=======
 		const { isloading, progress, nowDate } = this.state	
-		
->>>>>>> 1896c29e8478c49a2d19cce9af3959b686f6e9e8
+		const avatarMenu = (
+			<Menu className={styles.header_dropdown}>
+				<Menu.Item>
+					<Icon type="user" />
+					<span>个人中心</span>
+				</Menu.Item>
+				<Menu.Divider />
+				<Menu.Item>
+					<Icon type="logout" />
+					<span>退出登录</span>
+				</Menu.Item>
+			</Menu>
+		)
         return(
             <header className={classNames('header',styles.header)}>
                 <AjaxLoadBar isloading={isloading} progress={progress}/>  
@@ -122,13 +130,18 @@ class Header extends Component<HeaderProps>{
 							}							
 						</a>
 						<ul className={styles.header_right}>
-							<li>
+							<li className={styles.now_date}>
 								<Icon type="clock-circle" />
 								{ nowDate }
-							</li>
-							{/* <li>
-								2	
-							</li> */}
+							</li>							
+							<Dropdown overlay={avatarMenu} placement="bottomRight" overlayStyle={{marginLeft:12}}>
+								<li className={styles.head_avatar}>
+									<div >
+										<Avatar icon="user"/>	
+										<span className={styles.user_name}>admin</span>
+									</div>
+								</li>
+							</Dropdown>	
 						</ul>
 					</div>
                 </div>  				            
