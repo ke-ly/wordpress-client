@@ -21,7 +21,7 @@ export default {
 			// plugin config
 		}]
 	],
-	"theme": "./theme-config.js",
+	"theme": "./src/config/theme-config.js",
 	targets:{ie:10},
 	mountElementId:"___wp_app",
 	alias:{

@@ -15,6 +15,31 @@ export interface BasicLayoutState extends React.Props<any> {
 	collapsed : boolean
 }
 
+const menuData = [
+	{name:'控制台',icon:"dashboard" ,path:"/"},
+	{name:"页面",icon:"desktop",path:"/page",children:[
+		{name:'控制台1',path:"/page/list"},
+	]},
+	{name:"外观",icon:"skin",path:"/skin",children:[
+		{name:'主体',path:"/user/test"},
+	]},
+	{name:"文章",icon:"read",path:"/article",children:[
+		// {name:'主体',path:"/user/test"},
+	]},
+	{name:"评论",icon:"message",path:"/comment",children:[
+		// {name:'主体',path:"/user/test"},
+	]},
+	{name:"用户",icon:"user",path:"/user",children:[
+		// {name:'主体',path:"/user/test"},
+	]},
+	{name:"工具",icon:"tool",path:"/tool",children:[
+		// {name:'主体',path:"/user/test"},
+	]},
+	{name:"设置",icon:"setting",path:"/setting",children:[
+		// {name:'主体',path:"/user/test"},
+	]},
+]
+
 class BasicLayout extends React.Component<BasicLayoutProps,BasicLayoutState>{
 
 	constructor(props){
@@ -36,6 +61,8 @@ class BasicLayout extends React.Component<BasicLayoutProps,BasicLayoutState>{
 		})
 	}
 
+
+
 	render(){
 		const { children } = this.props		
 		const { collapsed, } = this.state	
@@ -47,7 +74,11 @@ class BasicLayout extends React.Component<BasicLayoutProps,BasicLayoutState>{
 					location={this.props.location}
 					collapsed={collapsed} 
 					onCollapsed={this.toggleCollapsed} />
-				<SideMenu collapsed={collapsed}/>
+				<SideMenu
+					history={this.props.history}
+					location={this.props.location}
+					collapsed={collapsed} 
+					menuData={menuData}/>
 				<main className={styles.main} style={{paddingLeft: collapsed ? 80 : 220}}>					
 					<section className={styles.container}>
 					{/* <Alert message={<div>
