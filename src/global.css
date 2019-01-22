@@ -19,3 +19,10 @@ body {
 ul,li{
     list-style: none;
 }
+
+.flex{
+    display: flex;
+}
+.flex .flexitem {
+    flex: 1;
+}

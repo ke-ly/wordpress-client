@@ -1,5 +1,5 @@
-import React, { Component, Fragment } from 'react'
-import { Icon, Avatar, Dropdown, Menu  } from 'antd'
+import React, { Component,  } from 'react'
+import { Icon, Avatar, Dropdown, Menu, Badge  } from 'antd'
 import { BasicLayoutProps } from '../../layouts/index'
 import AjaxLoadBar from '@/components/AjaxLoadBar'
 // import Axios from '@/components/AxiosHOC'
@@ -42,17 +42,18 @@ class Header extends Component<HeaderProps>{
 	}
 
 	loading:any = null
+	timer:any = null
 
 	static getDerivedStateFromProps (props:HeaderProps,state:HeaderState){		
 		if(props.location.pathname !== state.pathname){
 			return{
 				pathname:props.location.pathname,
 				isloading:false,
-				progress:0,
+				progress:0, 
 				nowDate:getDate()
 			}
 		}
-		return null
+		return null 
 	}
 
 	componentDidUpdate(prevProps:HeaderProps){
@@ -80,20 +81,19 @@ class Header extends Component<HeaderProps>{
 		},500)
 	}
 
-	
-
 	async componentDidMount(){	
 		this.imitateLoading()	
-		setInterval(()=>{
+	 	this.timer = setInterval(()=>{
 			this.setState({
 				nowDate:getDate()
-			})	
+			})				
 		},1000)		
 	}
 
-	componentWillUnmount(){
+	componentWillUnmount(){  		
+		clearInterval(this.loading) 
+		clearInterval(this.timer)
 		this.setState({isloading:false})
-		clearInterval(this.loading)
     }
 	
     render(){
@@ -134,6 +134,11 @@ class Header extends Component<HeaderProps>{
 								<Icon type="clock-circle" />
 								{ nowDate }
 							</li>							
+							<li className={styles.bell}>								
+								<Badge count={11}>
+									<Icon type="bell" />
+								</Badge>
+							</li>							
 							<Dropdown overlay={avatarMenu} placement="bottomRight" overlayStyle={{marginLeft:12}}>
 								<li className={styles.head_avatar}>
 									<div >
@@ -144,7 +149,7 @@ class Header extends Component<HeaderProps>{
 							</Dropdown>	
 						</ul>
 					</div>
-                </div>  				            
+                </div>   				            
             </header>
         )
     }

@@ -42,7 +42,7 @@ const menuData = [
 
 class BasicLayout extends React.Component<BasicLayoutProps,BasicLayoutState>{
 
-	constructor(props){
+	constructor(props:BasicLayoutProps){
 		super(props)
 		this.state = {
 			collapsed:false,
@@ -51,8 +51,7 @@ class BasicLayout extends React.Component<BasicLayoutProps,BasicLayoutState>{
 
 	async componentDidMount(){
 		// const res = await axios.get('/api/users')
-		// console.log(res);
-		
+		// console.log(res);		
 	}
 
 	toggleCollapsed = () => {
@@ -86,9 +85,7 @@ class BasicLayout extends React.Component<BasicLayoutProps,BasicLayoutState>{
 								现已可用！<a href="https://codex.wordpress.org/Version_5.0.3" className="link" >请现在更新</a>。
 							</div>} 
 						type="info" showIcon /> */}
-
 						{ children }
-
 					</section>
 					<Footer />
 				</main>				

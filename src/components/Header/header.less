@@ -24,17 +24,27 @@
             display: flex;         
             justify-content: flex-end;
             margin-bottom: 0;
-            padding-right: 24px;
+            padding-right: @padding-md;
             >li{                  
-                padding: 0 12px;
-                &:not(.now_date):hover{
-                    background-color: @background-color;
+                padding: 0 @padding-sm;
+                &:not(.now_date){
+                    cursor: pointer;
+                    &:hover{
+                        background-color: @background-color;
+                    }
                 }
 
-                &.head_avatar{
-                    cursor: pointer;
+                &.head_avatar{                    
                     .user_name{
-                        margin-left: 8px;
+                        margin-left: @padding-xs;
+                    }
+                }
+                &.bell{
+                    padding: 0 @padding-md;
+                    :global{
+                        .ant-badge-count{
+                            right: -10px;
+                        }
                     }
                 }
             }
@@ -70,7 +80,7 @@
             span{
                 font-size: 24px;
                 color: @primary-color;
-                font-weight: 600;              
+                font-weight: 600;               
             }
             i{
                 font-style: normal;
