@@ -16,9 +16,10 @@ export interface BasicLayoutState extends React.Props<any> {
 }
 
 const menuData = [
-	{name:'控制台',icon:"dashboard" ,path:"/"},
+	{name:'仪表盘',icon:"dashboard" ,path:"/"},
 	{name:"页面",icon:"desktop",path:"/page",children:[
-		{name:'控制台1',path:"/page/list"},
+		{name:'所有页面',path:"/page/list"},
+		{name:'新建页面',path:"/page/create"},
 	]},
 	{name:"外观",icon:"skin",path:"/skin",children:[
 		{name:'主体',path:"/user/test"},

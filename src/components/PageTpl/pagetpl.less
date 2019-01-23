@@ -4,10 +4,28 @@
     .transparent{
         background-color: transparent;
     }
-
+    .pageHeader{
+        display: flex;
+        .logo{
+            flex-shrink: 0;
+            margin-right: @padding-md;
+        }
+        .main{
+            flex: 1;
+            h1{
+                margin-bottom: 0;
+            }
+            .extraContent{
+                flex: 0 1 auto;
+            }
+        }
+    }
     .action{
         min-width: 256px;
         margin-left: @padding-lg;
         text-align: right;
+    }
+    .pageContent{
+        margin-top: @padding-md;
     }
 }

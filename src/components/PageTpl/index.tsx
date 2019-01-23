@@ -3,12 +3,12 @@ import classNames from 'classnames'
 import Link from 'umi/link'
 
 import styles from './pagetpl.less'
-
+type ThemeMode = 'white' | 'transparent'
 export interface PageTplProps {
-    theme ?: 'white' | 'transparent'
+    theme ?: ThemeMode
     className ?: string
     children?: React.ReactNode
-    logo ?: string
+    logo ?: string | React.ReactNode
     title ?: string | React.ReactNode
     action ?: string | React.ReactNode    
     content ?: string | React.ReactNode
@@ -23,7 +23,9 @@ class PageTemplate extends React.Component<PageTplProps> {
             logo, 
             theme="transparent", 
             title,
-            action 
+            action,
+            content,
+            extraContent,
         } = this.props
         const cls = classNames(styles.page,theme === 'transparent' ? styles.transparent : styles.white,className) 
         return (
@@ -39,9 +41,13 @@ class PageTemplate extends React.Component<PageTplProps> {
                                 { action }
                             </div>
                         </div>
+                        <div className="flex">
+                            { content && <div className={classNames(styles.content,'flexitem')}>{ content }</div> }
+                            { extraContent && <div className={styles.extraContent}>{ extraContent }</div> }
+                        </div>
                     </div>
                 </div>
-               <div className='pageContent'>
+               <div className={styles.pageContent}>
                     { children }
                </div>
             </div>

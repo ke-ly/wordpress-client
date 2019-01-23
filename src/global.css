@@ -26,3 +26,7 @@ ul,li{
 .flex .flexitem {
     flex: 1;
 }
+
+.my-table .ant-table-tbody{
+    background-color: #fff;
+}
