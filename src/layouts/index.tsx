@@ -1,5 +1,7 @@
 import React from 'react'
 // import { Alert } from 'antd'
+import axios from 'axios'
+import '@/config/axios.config'
 import Header from '@/components/Header'
 import SideMenu from '@/components/SideMenu'
 import Footer from '@/components/Footer'
@@ -50,8 +52,8 @@ class BasicLayout extends React.Component<BasicLayoutProps,BasicLayoutState>{
 		}
 	}
 
-	async componentDidMount(){
-		// const res = await axios.get('/api/users')
+	async componentDidMount(){		
+		const res = await axios.get('/api/users',)
 		// console.log(res);		
 	}
 

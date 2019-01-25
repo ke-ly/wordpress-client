@@ -3,8 +3,10 @@ import axios from 'axios'
 import '../../config/axios.config'
 
 
-export default (Component:any) => {
-    return props=>{
-        return <Component {...props} axios={axios}/>
-    }
+export default (Component:React.ComponentType<any>) => {    
+    return class extends React.Component {
+        render(){
+            return <Component {...this.props} s='s1b' axios={axios}/>
+        }
+    } 
 }

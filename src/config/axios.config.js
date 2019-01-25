@@ -1,5 +1,8 @@
 import axios from "axios"
-
+// interface Res {
+//     code:number
+//     msg:string
+// }
 axios.interceptors.request.use(function(config){      
     return config
 },function(error){    
@@ -9,6 +12,7 @@ axios.interceptors.response.use(function(response){
     if (response.status >= 200 && response.status < 300) {        
         return response.data
     }
+    return response.data
 },function(error){
     // const { status } = error.response
 
