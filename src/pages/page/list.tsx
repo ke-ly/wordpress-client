@@ -4,8 +4,8 @@
 import React from 'react'
 import Link from 'umi/link'
 import { Button, Table, Avatar } from 'antd'
-// import axios from 'axios'
-// import '@/config/axios.config'
+import axios from 'axios'
+import '@/config/axios.config'
 import Page from '@/components/PageTpl'
 import ListOperations from '@/components/ListOperations'
 import AxiosHOC from '@/components/AxiosHOC'
@@ -25,12 +25,15 @@ interface PageListState {
     datas ?: IPageColumns[]
 }
 
+const data:IPageColumns[] = [
+    {title:"首页",author:"maomao",comment:1,addtime:"2019-01-10",key:1}
+]
 
 export default AxiosHOC(class PageList extends React.Component<{},PageListState> {
     state = {
         selected : [],
         visible : false,
-        datas:[]
+        datas:data
     }
 
     handleListoperation = item => {
@@ -38,11 +41,11 @@ export default AxiosHOC(class PageList extends React.Component<{},PageListState>
     }
 
     async componentDidMount(){
-        // const res = await axios.post('/api/page/list')
-        // // console.log(res.code);
-        // this.setState({
-        //     datas:res.data
-        // })
+        const res = await axios.post('/api/page/list')
+        // console.log(res.code);
+        this.setState({
+            datas:res.data
+        })
         console.log(this.props);
         
     }
@@ -59,9 +62,7 @@ export default AxiosHOC(class PageList extends React.Component<{},PageListState>
             { title: '评论', dataIndex: 'comment', },
             { title: '日期', dataIndex: 'addtime', },
         ]
-        const data:IPageColumns[] = [
-            
-        ]
+       
         const rowSelection = {
             onChange: (_, selectedRows:IPageColumns[]) => {
                 this.setState({

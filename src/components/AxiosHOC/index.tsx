@@ -6,7 +6,7 @@ import '../../config/axios.config'
 export default (Component:React.ComponentType<any>) => {    
     return class extends React.Component {
         render(){
-            return <Component {...this.props} s='s1b' axios={axios}/>
+            return <Component {...this.props} axios={axios}/>
         }
     } 
 }
