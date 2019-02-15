@@ -23,8 +23,12 @@ const menuData = [
 		{name:'所有页面',path:"/page/list"},
 		{name:'新建页面',path:"/page/create"},
 	]},
-	{name:"外观",icon:"skin",path:"/skin",children:[
-		{name:'主体',path:"/user/test"},
+	{name:"外观",icon:"skin",path:"/exterior",children:[
+		{name:'主题',path:"/exterior/theme"},
+		{name:'自定义',path:"/exterior/customize"},
+		{name:'小工具',path:"/exterior/tool"},
+		{name:'菜单',path:"/exterior/menu"},
+		{name:'编辑',path:"/exterior/edit"},
 	]},
 	{name:"文章",icon:"read",path:"/article",children:[
 		// {name:'主体',path:"/user/test"},
