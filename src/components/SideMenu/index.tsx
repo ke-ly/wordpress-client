@@ -35,6 +35,13 @@ class SideMenu extends Component<SideBarProps,SideBarState>{
         selectedKeys:['/']  
     }    
 
+    componentDidMount(){
+        const { location:{ pathname } } = this.props 
+        this.setState({
+            openKeys:['/'+pathname.substring(1).split('/')[0]]
+        })
+    }
+
     static getDerivedStateFromProps(props:SideBarProps,state:SideBarState){        
         if(props.location.pathname !== state.pathname){
             return {
@@ -88,6 +95,7 @@ class SideMenu extends Component<SideBarProps,SideBarState>{
     render(){     
         const { collapsed, menuData } = this.props
         const { selectedKeys } = this.state
+        
         return(
             <aside className={styles.aside} style={{width: collapsed ? 80 : 220}}>
                 <Menu

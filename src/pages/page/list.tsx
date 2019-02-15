@@ -3,7 +3,7 @@
  */
 import React from 'react'
 import Link from 'umi/link'
-import { Button, Table, Avatar } from 'antd'
+import { Card ,Button, Table, Avatar } from 'antd'
 import axios from 'axios'
 import '@/config/axios.config'
 import Page from '@/components/PageTpl'
@@ -19,21 +19,19 @@ interface IPageColumns {
     key : number
 }
 
+
+
 interface PageListState {
     selected : IPageColumns[]
     visible ?: boolean
     datas ?: IPageColumns[]
 }
 
-const data:IPageColumns[] = [
-    {title:"首页",author:"maomao",comment:1,addtime:"2019-01-10",key:1}
-]
-
-export default AxiosHOC(class PageList extends React.Component<{},PageListState> {
+export default AxiosHOC(class PageList extends React.Component<any,PageListState> {
     state = {
         selected : [],
         visible : false,
-        datas:data
+        datas:[]
     }
 
     handleListoperation = item => {
@@ -45,9 +43,11 @@ export default AxiosHOC(class PageList extends React.Component<{},PageListState>
         // console.log(res.code);
         this.setState({
             datas:res.data
-        })
-        console.log(this.props);
-        
+        })        
+    }
+
+    gotoCreate = () => {        
+        this.props.history.push('/page/create')
     }
 
     render(){
@@ -74,8 +74,11 @@ export default AxiosHOC(class PageList extends React.Component<{},PageListState>
         return (
             <Page 
                 title="页面" 
-                action={<Button icon="plus" type="primary">新建页面</Button>}>
-                <Table rowSelection={rowSelection} className="my-table" columns={columns} dataSource={this.state.datas}/>
+                action={<Button icon="plus" onClick={this.gotoCreate} type="primary">新建页面</Button>}>
+                <Card>
+                    <Table rowSelection={rowSelection} className="my-table" columns={columns} dataSource={this.state.datas}/>
+                </Card>
+                
                 <ListOperations 
                     selectCount={this.state.selected.length}
                     visible={this.state.visible}

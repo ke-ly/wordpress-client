@@ -31,6 +31,6 @@ export default {
                 {title:"案例21",author:'maomao',comment:1,addtime:"2013-01-29",key:446},
                 {title:"关于我们22",author:'maomao',comment:1,addtime:"2013-01-29",key:556},
             ]});
-        }, 3000);
+        }, 100);
     },
 }

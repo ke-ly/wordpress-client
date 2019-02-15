@@ -17,9 +17,9 @@ export default {
 				],
 			},
 		}],
-		['./src/plugins/testPlugin.js', {
-			// plugin config
-		}]
+		// ['./src/plugins/testPlugin.js', {
+		// 	// plugin config
+		// }]
 	],
 	"theme": "./src/config/theme-config.js",
 	targets:{ie:10},
