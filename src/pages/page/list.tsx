@@ -27,24 +27,32 @@ interface PageListState {
     datas ?: IPageColumns[]
 }
 
+const mockData = [
+    {title:"首页",author:'maomao',comment:1,addtime:"2013-01-29",key:1},
+    {title:"价格",author:'maomao',comment:1,addtime:"2013-01-29",key:2},
+    {title:"帮助",author:'maomao',comment:1,addtime:"2013-01-29",key:3},
+    {title:"案例",author:'maomao',comment:1,addtime:"2013-01-29",key:4},
+    {title:"关于我们",author:'maomao',comment:1,addtime:"2013-01-29",key:5},
+]
+
 export default AxiosHOC(class PageList extends React.Component<any,PageListState> {
     state = {
         selected : [],
         visible : false,
-        datas:[]
+        datas:mockData
     }
 
     handleListoperation = item => {
         console.log(item);        
     }
 
-    async componentDidMount(){
-        const res = await axios.post('/api/page/list')
-        // console.log(res.code);
-        this.setState({
-            datas:res.data
-        })        
-    }
+    // async componentDidMount(){
+    //     const res = await axios.post('/api/page/list')
+    //     // console.log(res.code);
+    //     this.setState({
+    //         datas:res.data
+    //     })        
+    // }
 
     gotoCreate = () => {        
         this.props.history.push('/page/create')
