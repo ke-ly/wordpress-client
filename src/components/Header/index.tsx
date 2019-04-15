@@ -1,10 +1,10 @@
 import React, { Component,  } from 'react'
-import { Icon, Avatar, Dropdown, Menu, Badge  } from 'antd'
+import { Icon, Avatar, Dropdown, Menu, Badge, Button  } from 'antd'
 import { BasicLayoutProps } from '../../layouts/index'
 import AjaxLoadBar from '@/components/AjaxLoadBar'
 // import Axios from '@/components/AxiosHOC'
+import { UserContext, CounterContext } from '@/context'
 import classNames from 'classnames'
-
 import styles from './header.less'
 
 export interface HeaderProps extends BasicLayoutProps {
@@ -111,46 +111,67 @@ class Header extends Component<HeaderProps>{
 					<span>退出登录</span>
 				</Menu.Item>
 			</Menu>
-		)
+		)		
+		
         return(
-            <header className={classNames('header',styles.header)}>
-                <AjaxLoadBar isloading={isloading} progress={progress}/>  
-                <div className={styles.header_content}>
-                    <div className={classNames(styles.logo,collapsed ? styles.collapsed : null)}>
-                        <a href="/">					
-							{
-								collapsed ? <b>W<i>P</i></b> : <span>Word<i>Press</i></span>
-							}								
-                        </a>
-                    </div>
-					<div className={styles.header_actions}>
-						<a href="javascript:" className={styles.side_collapsed} onClick={this.props.onCollapsed}> 
-							{
-								collapsed ? <Icon type="menu-unfold" /> : <Icon type="menu-fold" />
-							}							
-						</a>
-						<ul className={styles.header_right}>
-							<li className={styles.now_date}>
-								<Icon type="clock-circle" />
-								{ nowDate }
-							</li>							
-							<li className={styles.bell}>								
-								<Badge count={11}>
-									<Icon type="bell" />
-								</Badge>
-							</li>							
-							<Dropdown overlay={avatarMenu} placement="bottomRight" overlayStyle={{marginLeft:12}}>
-								<li className={styles.head_avatar}>
-									<div >
-										<Avatar icon="user"/>	
-										<span className={styles.user_name}>admin</span>
-									</div>
-								</li>
-							</Dropdown>	
-						</ul>
-					</div>
-                </div>   				            
-            </header>
+			<UserContext.Consumer>
+				{
+					(userInfo) => (
+						<header className={classNames('header',styles.header)}>
+							<AjaxLoadBar isloading={isloading} progress={progress}/>  
+							<div className={styles.header_content}>
+								<div className={classNames(styles.logo,collapsed ? styles.collapsed : null)}>
+									<a href="/">					
+										{
+											collapsed ? <b>W<i>P</i></b> : <span>Word<i>Press</i></span>
+										}								
+									</a>
+								</div>
+								<div className={styles.header_actions}>
+									<a href="javascript:" className={styles.side_collapsed} onClick={this.props.onCollapsed}> 
+										{
+											collapsed ? <Icon type="menu-unfold" /> : <Icon type="menu-fold" />
+										}							
+									</a>
+									
+									<CounterContext.Consumer>
+									{
+										({count, changeCount}) => (
+											<b>
+												{ count }
+												<Button onClick={()=>changeCount(1)}>加1</Button>
+												<Button onClick={()=>changeCount(-1)}>减1</Button>
+											</b>
+										)
+									}
+									</CounterContext.Consumer>										
+										
+								
+									<ul className={styles.header_right}>
+										<li className={styles.now_date}>
+											<Icon type="clock-circle" />
+											{ nowDate }
+										</li>							
+										<li className={styles.bell}>								
+											<Badge count={11}>
+												<Icon type="bell" />
+											</Badge>
+										</li>							
+										<Dropdown overlay={avatarMenu} placement="bottomRight" overlayStyle={{marginLeft:12}}>
+											<li className={styles.head_avatar}>
+												<div >
+													<Avatar icon="user"/>	
+													<span className={styles.user_name}>{userInfo.name}</span>
+												</div>
+											</li>
+										</Dropdown>	
+									</ul>
+								</div>
+							</div>   				            
+						</header>
+					) 
+				}				
+			</UserContext.Consumer>
         )
     }
 }

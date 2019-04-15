@@ -5,6 +5,7 @@ import '@/config/axios.config'
 import Header from '@/components/Header'
 import SideMenu from '@/components/SideMenu'
 import Footer from '@/components/Footer'
+import { UserProvider, CounterProvider } from '@/context'
 import styles from './index.less'
 
 export type BasicLayoutComponent<P> = React.SFC<P>
@@ -13,8 +14,18 @@ export interface BasicLayoutProps extends React.Props<any> {
 	history?: History
 	location?: Location
 }
+
+interface User {
+	name : string,
+	phone : string,
+	level : string,
+	idcard ?: string | number,
+	age?: number,	
+	avatar ?: string,	
+}
+
 export interface BasicLayoutState extends React.Props<any> {
-	collapsed : boolean
+	collapsed : boolean,
 }
 
 const menuData = [
@@ -57,7 +68,7 @@ class BasicLayout extends React.Component<BasicLayoutProps,BasicLayoutState>{
 	}
 
 	async componentDidMount(){		
-		const res = await axios.get('/api/users',)
+		// const res = await axios.get('/api/users',)
 		// console.log(res);		
 	}
 
@@ -68,35 +79,38 @@ class BasicLayout extends React.Component<BasicLayoutProps,BasicLayoutState>{
 	}
 
 
-
 	render(){
 		const { children } = this.props		
-		const { collapsed, } = this.state	
+		const { collapsed,  } = this.state	
 		
 		return (
-			<div className={styles.layout}>
-				<Header 
-					history={this.props.history}
-					location={this.props.location}
-					collapsed={collapsed} 
-					onCollapsed={this.toggleCollapsed} />
-				<SideMenu
-					history={this.props.history}
-					location={this.props.location}
-					collapsed={collapsed} 
-					menuData={menuData}/>
-				<main className={styles.main} style={{paddingLeft: collapsed ? 80 : 220}}>					
-					<section className={styles.container}>
-					{/* <Alert message={<div>
-							<a className="link" href="https://codex.wordpress.org/Version_5.0.3">WordPress 5.0.3</a> 
-								现已可用！<a href="https://codex.wordpress.org/Version_5.0.3" className="link" >请现在更新</a>。
-							</div>} 
-						type="info" showIcon /> */}
-						{ children }
-					</section>
-					<Footer />
-				</main>				
-			</div>
+			<UserProvider>
+				<CounterProvider>
+				<div className={styles.layout}>
+					<Header 
+						history={this.props.history}
+						location={this.props.location}
+						collapsed={collapsed} 
+						onCollapsed={this.toggleCollapsed} />
+					<SideMenu
+						history={this.props.history}
+						location={this.props.location}
+						collapsed={collapsed} 
+						menuData={menuData}/>
+					<main className={styles.main} style={{paddingLeft: collapsed ? 80 : 220}}>					
+						<section className={styles.container}>
+						{/* <Alert message={<div>
+								<a className="link" href="https://codex.wordpress.org/Version_5.0.3">WordPress 5.0.3</a> 
+									现已可用！<a href="https://codex.wordpress.org/Version_5.0.3" className="link" >请现在更新</a>。
+								</div>} 
+							type="info" showIcon /> */}
+							{ children }
+						</section>
+						<Footer />
+					</main>				
+				</div>
+				</CounterProvider>
+			</UserProvider>
 		)
 	}
 }

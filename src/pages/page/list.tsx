@@ -82,7 +82,8 @@ export default AxiosHOC(class PageList extends React.Component<any,PageListState
         return (
             <Page 
                 title="页面" 
-                action={<Button icon="plus" onClick={this.gotoCreate} type="primary">新建页面</Button>}>
+                // action={<Button icon="plus" onClick={this.gotoCreate} type="primary">新建页面</Button>}
+                >
                 <Card>
                     <Table rowSelection={rowSelection} className="my-table" columns={columns} dataSource={this.state.datas}/>
                 </Card>

@@ -3,6 +3,10 @@ const path = require('path')
 export default {
 	treeShaking: true,
 	hash:true,
+	// exportStatic: {
+	// 	htmlSuffix: true,
+    // 	dynamicRoot: true,
+	// },
 	plugins: [ 
 		// ref: https://umijs.org/plugin/umi-plugin-react.html
 		['umi-plugin-react', {
@@ -13,7 +17,7 @@ export default {
 			dll: false,
 			routes: {
 				exclude: [        
-				/components\//,
+					/components\//,
 				],
 			},
 		}],

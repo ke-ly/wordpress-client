@@ -94,8 +94,8 @@ class SideMenu extends Component<SideBarProps,SideBarState>{
 
     render(){     
         const { collapsed, menuData } = this.props
-        const { selectedKeys } = this.state
-        
+        const { selectedKeys } = this.state        
+        console.log('sideMenu render')        
         return(
             <aside className={styles.aside} style={{width: collapsed ? 80 : 220}}>
                 <Menu
