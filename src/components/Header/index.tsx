@@ -134,18 +134,17 @@ class Header extends Component<HeaderProps>{
 										}							
 									</a>
 									
-									<CounterContext.Consumer>
-									{
-										({count, changeCount}) => (
-											<b>
-												{ count }
-												<Button onClick={()=>changeCount(1)}>加1</Button>
-												<Button onClick={()=>changeCount(-1)}>减1</Button>
-											</b>
-										)
-									}
-									</CounterContext.Consumer>										
-										
+									{/* <CounterContext.Consumer>
+										{
+											({count, changeCount}) => (
+												<b>
+													{ count }
+													<Button onClick={()=>changeCount(1)}>加1</Button>
+													<Button onClick={()=>changeCount(-1)}>减1</Button>
+												</b>
+											)
+										}
+									</CounterContext.Consumer>*/}										
 								
 									<ul className={styles.header_right}>
 										<li className={styles.now_date}>

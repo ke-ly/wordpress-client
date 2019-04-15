@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card , Row, Col } from 'antd'
 import Link from 'umi/link'
-// import styles from './index.css'
+// import './index.css'
 import Page from '@/components/PageTpl'
 class Dashboard extends React.Component {
     render(){
