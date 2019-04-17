@@ -5,7 +5,7 @@ import React from 'react'
 import Link from 'umi/link'
 import {  Card, Row, Col, Input, Select, Icon, InputNumber, Checkbox, } from 'antd'
 import Page from '@/components/PageTpl'
-import AxiosHOC from '@/components/AxiosHOC'
+import Axios from '@/components/Axios'
 import BraftEditor from 'braft-editor'
 import 'braft-editor/dist/index.css'
 // import ColorPicker from 'braft-extensions/dist/color-picker'
@@ -18,7 +18,7 @@ import styles from './page.less'
 //     theme: 'light' // 支持dark和light两种主题，默认为dark
 // }))
 
-export default AxiosHOC(class PageList extends React.Component{
+export default Axios(class PageList extends React.Component{
 
     state = {
         // 创建一个空的editorState作为初始值

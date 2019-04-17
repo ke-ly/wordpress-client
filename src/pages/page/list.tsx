@@ -8,7 +8,7 @@ import axios from 'axios'
 import '@/config/axios.config'
 import Page from '@/components/PageTpl'
 import ListOperations from '@/components/ListOperations'
-import AxiosHOC from '@/components/AxiosHOC'
+import Axios from '@/components/Axios'
 import styles from './page.less'
 
 interface IPageColumns {
@@ -35,7 +35,7 @@ const mockData = [
     {title:"关于我们",author:'maomao',comment:1,addtime:"2013-01-29",key:5},
 ]
 
-export default AxiosHOC(class PageList extends React.Component<any,PageListState> {
+export default Axios(class PageList extends React.Component<any,PageListState> {
     state = {
         selected : [],
         visible : false,

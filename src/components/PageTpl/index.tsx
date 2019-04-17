@@ -4,6 +4,7 @@ import Link from 'umi/link'
 
 import styles from './pagetpl.less'
 type ThemeMode = 'white' | 'transparent'
+
 export interface PageTplProps {
     theme ?: ThemeMode
     className ?: string

@@ -1,8 +1,9 @@
 import React, { Component,  } from 'react'
 import { Icon, Avatar, Dropdown, Menu, Badge, Button  } from 'antd'
+import router from 'umi/router'
 import { BasicLayoutProps } from '../../layouts/index'
 import AjaxLoadBar from '@/components/AjaxLoadBar'
-// import Axios from '@/components/AxiosHOC'
+// import Axios from '@/components/Axios'
 import { UserContext, CounterContext } from '@/context'
 import classNames from 'classnames'
 import styles from './header.less'
@@ -94,19 +95,26 @@ class Header extends Component<HeaderProps>{
 		clearInterval(this.loading) 
 		clearInterval(this.timer)
 		this.setState({isloading:false})
-    }
+	}
+	
+	accountMenuChange = ({ item, key, }) => {
+
+		if(key === 'logout'){
+			router.push('/index/login')
+		}
+	}
 	
     render(){
 		const { collapsed } = this.props
 		const { isloading, progress, nowDate } = this.state	
 		const avatarMenu = (
-			<Menu className={styles.header_dropdown}>
-				<Menu.Item>
+			<Menu className={styles.header_dropdown} onClick={this.accountMenuChange}>
+				<Menu.Item key="center">
 					<Icon type="user" />
 					<span>个人中心</span>
 				</Menu.Item>
 				<Menu.Divider />
-				<Menu.Item>
+				<Menu.Item key="logout">
 					<Icon type="logout" />
 					<span>退出登录</span>
 				</Menu.Item>

@@ -68,8 +68,8 @@ class BasicLayout extends React.Component<BasicLayoutProps,BasicLayoutState>{
 	}
 
 	async componentDidMount(){		
-		// const res = await axios.get('/api/users',)
-		// console.log(res);		
+		const res = await axios.post('/api/fun/getmenu')
+		console.log(res);		
 	}
 
 	toggleCollapsed = () => {
@@ -80,35 +80,37 @@ class BasicLayout extends React.Component<BasicLayoutProps,BasicLayoutState>{
 
 
 	render(){
-		const { children } = this.props		
+		const { children, location:{ pathname } } = this.props		
 		const { collapsed,  } = this.state	
-		
+		if(pathname.startsWith('/index/')){
+			return <section>{ children }</section>
+		}
 		return (
 			<UserProvider>
 				<CounterProvider>
-				<div className={styles.layout}>
-					<Header 
-						history={this.props.history}
-						location={this.props.location}
-						collapsed={collapsed} 
-						onCollapsed={this.toggleCollapsed} />
-					<SideMenu
-						history={this.props.history}
-						location={this.props.location}
-						collapsed={collapsed} 
-						menuData={menuData}/>
-					<main className={styles.main} style={{paddingLeft: collapsed ? 80 : 220}}>					
-						<section className={styles.container}>
-						{/* <Alert message={<div>
-								<a className="link" href="https://codex.wordpress.org/Version_5.0.3">WordPress 5.0.3</a> 
-									现已可用！<a href="https://codex.wordpress.org/Version_5.0.3" className="link" >请现在更新</a>。
-								</div>} 
-							type="info" showIcon /> */}
-							{ children }
-						</section>
-						<Footer />
-					</main>				
-				</div>
+					<div className={styles.layout}>
+						<Header 
+							history={this.props.history}
+							location={this.props.location}
+							collapsed={collapsed} 
+							onCollapsed={this.toggleCollapsed} />
+						<SideMenu
+							history={this.props.history}
+							location={this.props.location}
+							collapsed={collapsed} 
+							menuData={menuData}/>
+						<main className={styles.main} style={{paddingLeft: collapsed ? 80 : 220}}>					
+							<section className={styles.container}>
+							{/* <Alert message={<div>
+									<a className="link" href="https://codex.wordpress.org/Version_5.0.3">WordPress 5.0.3</a> 
+										现已可用！<a href="https://codex.wordpress.org/Version_5.0.3" className="link" >请现在更新</a>。
+									</div>} 
+								type="info" showIcon /> */}
+								{ children }
+							</section>
+							<Footer />
+						</main>				
+					</div>
 				</CounterProvider>
 			</UserProvider>
 		)

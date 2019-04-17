@@ -25,22 +25,22 @@ export default {
 		// 	// plugin config
 		// }]
 	],
-	"theme": "./src/config/theme-config.js",
+	theme: "./src/config/theme-config.js",
 	targets:{ie:10},
 	mountElementId:"___wp_app",
 	alias:{
 		"@":path.resolve(__dirname,'/src')
 	},
-	"externals": {
+	externals: {
 		"react": "React",
 		"react-dom": "ReactDOM",
 		'react-router-dom': 'ReactRouterDOM'
 	},
-	// "proxy": {
-	// 	"/api": {
-	// 	  "target": "http://jsonplaceholder.typicode.com/",
-	// 	  "changeOrigin": true,
-	// 	  "pathRewrite": { "^/api" : "" }
-	// 	}
-	// }
+	"proxy": {
+		"/api": {
+			"target": "http://192.168.1.250:9098/",
+			"changeOrigin": true,
+			"pathRewrite": { "^/" : "" }
+		}
+	}
 }
