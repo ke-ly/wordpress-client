@@ -29,7 +29,6 @@ class PageTemplate extends React.Component<PageTplProps> {
             extraContent,
         } = this.props
         const cls = classNames(styles.page,theme === 'transparent' ? styles.transparent : styles.white,className) 
-        console.log('PageTemplate render');
         
         return (
             <div className={cls}>

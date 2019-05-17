@@ -5,9 +5,7 @@ import axios from '@/components/Axios'
 function Login (props) {    
     const [ phone, setPhone ] = useState()
     const [ password, setPwd ] = useState()
-    const handleSubmit = () => {
-        console.log(password,phone);
-        
+    const handleSubmit = () => {        
         props.axios.post('/api/home/login',{password,userName:phone})
     }
 
