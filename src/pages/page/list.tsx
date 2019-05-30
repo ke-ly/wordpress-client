@@ -46,13 +46,13 @@ export default Axios(class PageList extends React.Component<any,PageListState> {
         console.log(item);        
     }
 
-    // async componentDidMount(){
-    //     const res = await axios.post('/api/page/list')
-    //     // console.log(res.code);
-    //     this.setState({
-    //         datas:res.data
-    //     })        
-    // }
+    async componentDidMount(){
+        const res = await axios.post('/api/fun/getmenu')
+        console.log(res);
+        // this.setState({
+        //     datas:res.data
+        // })        
+    }
 
     gotoCreate = () => {        
         this.props.history.push('/page/create')

@@ -38,7 +38,7 @@ export default {
 	},
 	"proxy": {
 		"/api": {
-			"target": "http://192.168.1.250:9098/",
+			"target": "http://192.168.1.250:5566/",
 			"changeOrigin": true,
 			"pathRewrite": { "^/" : "" }
 		}
