@@ -3,7 +3,7 @@ import axios from "axios"
 //     code:number
 //     msg:string
 // }
-axios.interceptors.request.use(function(config){      
+axios.interceptors.request.use(function(config){    
     return config
 },function(error){    
     return Promise.reject(error)

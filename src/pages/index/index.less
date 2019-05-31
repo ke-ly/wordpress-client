@@ -1,0 +1,59 @@
+@import '../../var.less';
+@loginWidth : 300px;
+
+.login{
+    display: flex;
+    width: 1000px;
+    height: 600px;
+    margin: 10% auto 100px auto;
+    background-color: #fff;
+    box-shadow: 0 0 35px rgba(96, 118, 243, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    .img{
+        flex: 1;
+        padding: 30px 0 0 30px;
+        background-image: url(https://i.loli.net/2019/05/30/5cef9d780c35c16123.jpeg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: 100% 100%;
+    }
+    .hd{
+        width: @loginWidth;
+        margin: 30px auto;
+        h2{
+            span{
+                margin-left: 5px;
+                color: @primary-color;
+            }
+        }
+    }
+    .loginForm{
+        flex: 1;
+       
+        .form{
+            width: @loginWidth;
+            margin: 80px auto;
+        }
+        .loginForgot{
+            float: right;
+        }
+        
+        .btnWrap{
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            
+            .loginBtn{
+                flex: 1;
+                margin-right: 10px;     
+                box-shadow: 0 0 10px rgba(96, 118, 243, 0.2);         
+            }
+            .regBtn{
+                flex: 1;
+                margin-left: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);       
+            }
+        }
+    }
+}
