@@ -10,7 +10,9 @@ function Login(props) {
         e.preventDefault()
         validateFields((err,val)=>{
             if(!err){
-                props.axios.post('/api/user/login',val)
+                // props.axios.post('/api/user/login',val)
+                localStorage.setItem('token','1122334')                
+                props.history.push('/')
             }
         })       
     }

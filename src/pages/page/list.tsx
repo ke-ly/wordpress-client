@@ -47,7 +47,7 @@ export default Axios(class PageList extends React.Component<any,PageListState> {
     }
 
     async componentDidMount(){
-        const res = await axios.post('/api/fun/getmenu')
+        const res = await axios.post('/api/page/list')
         console.log(res);
         // this.setState({
         //     datas:res.data

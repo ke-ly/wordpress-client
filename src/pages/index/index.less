@@ -13,7 +13,7 @@
     .img{
         flex: 1;
         padding: 30px 0 0 30px;
-        background-image: url(https://i.loli.net/2019/05/30/5cef9d780c35c16123.jpeg);
+        background-image: url(../../assets/login-bg.jpeg);
         background-size: cover;
         background-repeat: no-repeat;
         background-position: 100% 100%;
@@ -34,6 +34,11 @@
         .form{
             width: @loginWidth;
             margin: 80px auto;
+            :global{
+                .ant-input{
+                    height: 36px;
+                }
+            }
         }
         .loginForgot{
             float: right;
@@ -43,16 +48,20 @@
             display: flex;
             justify-content: space-between;
             margin-top: 20px;
-            
+            :global{
+                .ant-btn{
+                    height: 36px;
+                }
+            }
             .loginBtn{
                 flex: 1;
                 margin-right: 10px;     
-                box-shadow: 0 0 10px rgba(96, 118, 243, 0.2);         
+                box-shadow: 0 0 10px rgba(96, 118, 243, 0.15);         
             }
             .regBtn{
                 flex: 1;
                 margin-left: 10px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);       
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);       
             }
         }
     }

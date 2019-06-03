@@ -100,6 +100,7 @@ class Header extends Component<HeaderProps>{
 	accountMenuChange = ({ item, key, }) => {
 
 		if(key === 'logout'){
+			localStorage.setItem('token','')
 			router.push('/index/login')
 		}
 	}

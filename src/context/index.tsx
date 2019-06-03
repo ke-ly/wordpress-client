@@ -1,21 +1,28 @@
 import React,{ createContext, useState, useEffect } from 'react'
-
+import withAxios from '../components/Axios'
+// import axios from 'axios'
+// import '../../config/axios.config'
 const DefaultUserInfo = { name:"",phone:"",level:"" }
 
 export const UserContext =  createContext(null)
 export const CounterContext =  createContext(null)
 
-export function UserProvider (props) {
-    const [user,useUser] = useState(DefaultUserInfo)
+export const UserProvider = withAxios(function (props) {
+    
+    const [user,setUser] = useState(DefaultUserInfo)
     useEffect(()=>{
         setTimeout(()=>{            
-            useUser({name:"maomao",phone:'110',level:"免费版"})
+            setUser({name:"maomao",phone:'110',level:"免费版"})
         },1000)
+        props.axios.get('/api/user/info').then(res=>{
+            console.log(res,1122334);
+            
+        })
     },[])       
     return <UserContext.Provider value={user}>
         { props.children }
     </UserContext.Provider>
-}
+})
 
 export function CounterProvider (props) {
     const [count, setCount] = useState(0) 
@@ -26,4 +33,5 @@ export function CounterProvider (props) {
         { props.children }
     </CounterContext.Provider>
 }
+
 

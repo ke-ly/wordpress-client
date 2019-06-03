@@ -1,4 +1,5 @@
 import React from 'react'
+import Redirect from 'umi/redirect'
 import { LocaleProvider, } from 'antd'
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 
@@ -8,7 +9,7 @@ import '@/config/axios.config'
 import Header from '@/components/Header'
 import SideMenu from '@/components/SideMenu'
 import Footer from '@/components/Footer'
-import { UserProvider, CounterProvider } from '@/context'
+import { UserProvider, CounterProvider } from '@/context/index'
 import WithoutLogin from './withoutLogin'
 import styles from './layout.less'
 
@@ -64,8 +65,8 @@ class BasicLayout extends React.Component<BasicLayoutProps,BasicLayoutState>{
 	}
 
 	async componentDidMount(){		
-		const res = await axios.post('/api/home/dashboard')
-		console.log(res);		
+		// const res = await axios.post('/api/home/dashboard')
+		// console.log(res);		
 	}
 
 	toggleCollapsed = () => {
@@ -78,6 +79,8 @@ class BasicLayout extends React.Component<BasicLayoutProps,BasicLayoutState>{
 	render(){
 		const { children, location:{ pathname } } = this.props		
 		const { collapsed,  } = this.state	
+		const authority = localStorage.getItem('token')
+		
 		if(pathname.startsWith('/index/')){
 			return <LocaleProvider locale={zhCN}>
 				<WithoutLogin>
@@ -87,6 +90,7 @@ class BasicLayout extends React.Component<BasicLayoutProps,BasicLayoutState>{
 			</LocaleProvider> 
 		}
 		return (
+			!authority ? <Redirect to="/index/login"/> :
 			<LocaleProvider locale={zhCN}>
 				<UserProvider>
 					<CounterProvider>
