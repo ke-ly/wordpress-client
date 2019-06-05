@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input, Button, Form, Icon, Checkbox  } from 'antd'
+import { Input, Button, Form, Icon, Checkbox, message  } from 'antd'
 import styles from './index.less'
 import axios from '@/components/Axios'
 
@@ -8,11 +8,14 @@ function Login(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        validateFields((err,val)=>{
+        validateFields(async(err,val)=>{
             if(!err){
-                // props.axios.post('/api/user/login',val)
-                localStorage.setItem('token','1122334')                
-                props.history.push('/')
+                const res = await props.axios.post('/api/user/login',val)
+                if(res.success){
+                    message.success(res.msg)
+                    localStorage.setItem('token','1122334')                
+                    props.history.push('/')
+                }                
             }
         })       
     }
